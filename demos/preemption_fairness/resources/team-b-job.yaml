@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: team-b-job
+  namespace: team-b
+  labels:
+    kueue.x-k8s.io/queue-name: local-queue
+    kueue.x-k8s.io/priority-class: dev-priority
+spec:
+  template:
+    spec:
+      containers:
+        - name: app
+          image: busybox
+          command: ["sleep", "3600"]
+          resources:
+            requests:
+              cpu: "5"
+      restartPolicy: Never
