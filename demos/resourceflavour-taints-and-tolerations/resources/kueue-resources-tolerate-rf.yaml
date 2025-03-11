@@ -1,0 +1,76 @@
+apiVersion: kueue.x-k8s.io/v1beta1
+kind: ClusterQueue
+metadata:
+  name: "cluster-queue"
+spec:
+  namespaceSelector: {} # match all.
+  resourceGroups:
+  - coveredResources: ["cpu", "memory", "pods", "nvidia.com/gpu"]
+    flavors:
+    - name: "cpu-flavor"
+      resources:
+      - name: "cpu"
+        nominalQuota: 9
+      - name: "memory"
+        nominalQuota: 36Gi
+      - name: "pods"
+        nominalQuota: 15
+      - name: "nvidia.com/gpu"
+        nominalQuota: 0
+    - name: "nvidia-t4-rf"
+      resources:
+      - name: "cpu"
+        nominalQuota: 24
+      - name: "memory"
+        nominalQuota: 98Gi
+      - name: "pods"
+        nominalQuota: 15
+      - name: "nvidia.com/gpu"
+        nominalQuota: 3
+    - name: "nvidia-a10g-rf"
+      resources:
+      - name: "cpu"
+        nominalQuota: 24
+      - name: "memory"
+        nominalQuota: 98Gi
+      - name: "pods"
+        nominalQuota: 15
+      - name: "nvidia.com/gpu"
+        nominalQuota: 3
+---
+apiVersion: kueue.x-k8s.io/v1beta1
+kind: ResourceFlavor
+metadata:
+  name: "nvidia-a10g-rf"
+spec:
+  nodeLabels:
+    node.kubernetes.io/instance-type: g5.2xlarge
+  tolerations:
+  - key: "nvidia-a10g"
+    operator: "Exists"
+    effect: "NoSchedule"
+---
+apiVersion: kueue.x-k8s.io/v1beta1
+kind: ResourceFlavor
+metadata:
+  name: "nvidia-t4-rf"
+spec:
+  nodeLabels:
+    node.kubernetes.io/instance-type: g4dn.2xlarge
+  tolerations:
+  - key: "nvidia-t4"
+    operator: "Exists"
+    effect: "NoSchedule"
+---
+apiVersion: kueue.x-k8s.io/v1beta1
+kind: ResourceFlavor
+metadata:
+  name: cpu-flavor
+---
+apiVersion: kueue.x-k8s.io/v1beta1
+kind: LocalQueue
+metadata:
+  namespace: team-a 
+  name: user-queue
+spec:
+  clusterQueue: cluster-queue 
