@@ -18,4 +18,6 @@ make update-readme
 3. See the changes in the README.md file.
 
 ## Example
-DO NOT MERGE, I WILL ADD SOMETHING COOL HERE
+![Tutorial][tutorial]
+
+[tutorial]: update-readme-script-demo.webp
