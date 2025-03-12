@@ -4,7 +4,7 @@
 SHELL = /usr/bin/env bash -o pipefail
 .SHELLFLAGS = -ec
 
-YAML_FILE_PATHS = $(shell find demos -type f -name "README.md" -exec grep -hoP '(?<=YAML-START: )[^ ]+' {} +)
+YAML_FILE_PATHS = $(shell find demos -type f -name "README.md" -exec grep -hoE 'YAML-START: [^ ]+' {} + | sed 's/YAML-START: //')
 
 .PHONY: update-readme
 update-readme:
