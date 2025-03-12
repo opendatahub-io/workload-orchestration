@@ -1,3 +1,5 @@
+# Update Readme Script
+
 ## What is 'make update-readme' used for?
 This script is used to update all the README.md files in the demos directory with the latest YAML files from each resources directory. This avoids having to copy and paste any changes made in the YAML onto the Readme, which could lead to inconsistencies.
 
