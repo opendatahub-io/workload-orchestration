@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: curl
-        image: quay.io/rh_ee_czaccari/curlimages:curl
+        image: curlimages:curl
         command: [bad command that doesn't exist] # This command will fail, causing the Pods to fail
         resources:
           requests:

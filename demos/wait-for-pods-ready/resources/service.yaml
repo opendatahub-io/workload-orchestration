@@ -8,7 +8,7 @@ metadata:
 spec:
   containers:
     - name: server
-      image: quay.io/rh_ee_czaccari/python:3.9-slim
+      image: python:3.9-slim
       command: ["python", "-m", "http.server", "80"]
       ports:
         - containerPort: 80
