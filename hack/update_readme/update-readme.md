@@ -21,3 +21,9 @@ make update-readme
 ![Tutorial][tutorial]
 
 [tutorial]: update-readme-script-demo.webp
+
+4. Multi-document YAML files are supported. You will only need to provide the index of the document you want to insert:
+```go
+<!-- YAML-START: <path-to-yaml>[<index>] -->
+<!-- YAML-END -->
+```

@@ -12,8 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-YAML_FILE_PATHS = $(shell find demos -type f -name "README.md" -exec grep -hoE 'YAML-START: [^ ]+' {} + | sed 's/YAML-START: //')
-
+YAML_FILE_PATHS_WITH_INDEX = $(shell find demos -type f -name "README.md" -exec grep -hoE 'YAML-START: [^ ]+' {} + | sed 's/YAML-START: //')
 .PHONY: update-readme
 update-readme:
-	YAML_FILE_PATHS="$(YAML_FILE_PATHS)" ./hack/update_readme/update-readme.sh
+	YAML_FILE_PATHS_WITH_INDEX="$(YAML_FILE_PATHS_WITH_INDEX)" ./hack/update_readme/update-readme.sh
