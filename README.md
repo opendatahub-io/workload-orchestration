@@ -13,3 +13,7 @@ asciinema play demos/demo-folder/demo.cast
 
 > [!NOTE]
 > You can install asciinema by visiting their [Getting Started](https://docs.asciinema.org/getting-started/#__tabbed_1_1) page.
+
+## Useful Scripts for Contributors
+- [update-readme.sh](./hack/update_readme/update-readme.sh) - This script is used to update all the README.md files in the demos directory with the latest YAML files from each resources directory.
+This avoids having to copy and paste any changes made in the YAML onto the Readme, which could lead to inconsistencies. For usage details, refer to the [documentation](./hack/update_readme/update-readme.md).
